@@ -50,7 +50,11 @@
                 <h1 class="text-center">Lyrics Master</h1>
                 <div class="search-box my-5">
                     <input id="search-field" type="text" class="form-control" placeholder="Enter your desired song">
-                    <button onclick="searchSong()" class="btn btn-success search-btn">Search</button>
+                    <button id="search-button" onclick="searchSong()" class="btn btn-success search-btn">Search</button>
+                </div>
+            </div>
+            <div id="loading-spinner" class="d-flex justify-content-center d-none">
+                <div class="spinner-border" role="status">
                 </div>
             </div>
             <h3 id="error-message"></h3>

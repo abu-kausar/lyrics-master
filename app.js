@@ -6,15 +6,24 @@ const searchSong = async () => {
     // fetch(url)
     //     .then(res => res.json())
     //     .then(data => displaySongs(data.data))
+    toggleSpinner()
     try{
         const res = await fetch(url);
         const data = await res.json();
         displaySongs(data.data);
     } catch(error){
         displayErrorMessage("Sorry, Something went wrong!");
-    }
-    
+    }   
 }
+
+var searchButton = document.getElementById("search-button");
+document.getElementById("search-field")
+    .addEventListener("keypress", function(event){
+        if(event.key == 'Enter'){
+            searchButton.click();
+        }
+    });
+
 
 const displaySongs = songs => {
     const songContainer = document.getElementById('song-container');
@@ -46,6 +55,7 @@ const displaySongs = songs => {
         </div>
         `;
         songContainer.appendChild(songDiv);
+        toggleSpinner()
     });
 }
 
@@ -71,4 +81,11 @@ const displayLyrics = lyrics => {
 const displayErrorMessage = error => {
     const errorTag = document.getElementById('error-message');
     errorTag.innerText = error;
+}
+
+const toggleSpinner = (show) => {
+    const spinner = document.getElementById('loading-spinner');
+    const songs = document.getElementById('song-container');
+    spinner.classList.toggle('d-none');
+    songs.classList.toggle('d-none')
 }
